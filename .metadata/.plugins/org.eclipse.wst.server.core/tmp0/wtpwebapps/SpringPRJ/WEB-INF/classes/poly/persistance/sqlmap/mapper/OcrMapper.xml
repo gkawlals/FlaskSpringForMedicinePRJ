@@ -7,24 +7,12 @@
 	<insert id="InsertOcrInfo" parameterType="OcrDTO">
 		INSERT INTO OCR_INFO
 			(
-				SEQ,
-				SAVE_FILE_NAME,
-				SAVE_FILE_PATH,
-				ORG_FILE_NAME,
-				EXT,
-				OCR_TEXT,
-				REG_ID,
-				CHG_ID
+				USER_ID,
+				MEDICNE_NAME
 			)
 		VALUES(
-				(SELECT NVL(MAX(A.SEQ),0)+1 FROM OCR_INFO A),
-				#{fileName},
-				#{filePath},
-				#{org_file_name},
-				#{ext},
-				#{textFromImage},
 				#{reg_id},
-				#{reg_id}
+				#{org_file_name}
 		)
 	</insert>
 		

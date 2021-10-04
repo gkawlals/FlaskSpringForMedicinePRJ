@@ -1,0 +1,7 @@
+package poly.service;
+
+public interface IMainService {
+	
+	OcrDTO AddMedicine(OcrDTO pDTO) throws Exception;
+
+}

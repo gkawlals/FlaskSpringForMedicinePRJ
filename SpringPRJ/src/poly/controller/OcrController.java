@@ -1,8 +1,9 @@
 package poly.controller;
 
 	import java.io.File;
+import java.net.URLEncoder;
 
-	import javax.annotation.Resource;
+import javax.annotation.Resource;
 	import javax.servlet.http.HttpServletRequest;
 	import javax.servlet.http.HttpServletResponse;
 
@@ -12,6 +13,7 @@ package poly.controller;
 	import org.springframework.web.bind.annotation.RequestMapping;
 	import org.springframework.web.bind.annotation.RequestParam;
 	import org.springframework.web.multipart.MultipartFile;
+
 
 	import poly.dto.OcrDTO;
 	import poly.service.IOcrService;
@@ -25,6 +27,7 @@ package poly.controller;
 	 * */
 	@Controller
 	public class OcrController {
+		
 		private Logger log = Logger.getLogger(this.getClass());
 
 		/*
@@ -34,26 +37,27 @@ package poly.controller;
 		private IOcrService ocrService;
 
 		// 업로드되는 파일이 저장되는 기본 폴더 설정(자바에서 경로는 /로 표현함)
-		final private String FILE_UPLOAD_SAVE_PATH = "c:/upload"; // C:\\upload 폴더에 저장
-
+		//final private String FILE_UPLOAD_SAVE_PATH = "/data/image/"; // C:\\upload 폴더에 저장
+		final private String FILE_UPLOAD_SAVE_PATH = "/Users/hamjimin/upload/"; // C:\\upload 폴더에 저장
 		
 		/**
 		 * 이미지 인식을 위한 파일업로드 화면 호출
 		 */
-		@RequestMapping(value="ocr/imageFileUpload")
-		public String Index() {
+		@RequestMapping(value="/ocr/ImageFileUpload.do")
+		public String upload() {
+			
 			log.info(this.getClass().getName() + ".imageFileUpload!");
 			
-			return "/ocr/ImageFileUplaod";
+			return "/ocr/ImageFileUplaod.do";
 		}
 		
 		/**
 		 * 파일업로드 및 이미지 인식
 		 */
-		@RequestMapping(value = "ocr/getReadforImageText")
+		@RequestMapping(value = "/ocr/getReadForImageText.do")
 		public String getReadforImageText(HttpServletRequest request, HttpServletResponse response, ModelMap model,
 				@RequestParam(value = "fileUpload") MultipartFile mf) throws Exception {
-
+			
 			log.info(this.getClass().getName() + ".getReadforImageText start!");
 
 			// OCR 실행 결과
@@ -65,6 +69,8 @@ package poly.controller;
 
 			// 파일 확장자 가져오기
 			String ext = originalFileName.substring(originalFileName.lastIndexOf(".") + 1, originalFileName.length()).toLowerCase();
+			
+			String receive_dt = CmmUtil.nvl(request.getParameter("receive_dt"));
 
 			// 이미지 파일만 실행되도록 함
 			if (ext.equals("jpeg") || ext.equals("jpg") || ext.equals("gif") || ext.equals("png")) {
@@ -73,16 +79,12 @@ package poly.controller;
 				// 업로드하는 파일 이름에 한글, 특수 문자들이 저장될 수 있기 때문에 강제로 영어와 숫자로 구성된 파일명으로 변경해서 저장한다.
 				// 리눅스나 유닉스 등 운영체제는 다국어 지원에 취약하기 때문이다.
 				String saveFileName = DateUtil.getDateTime("24hhmmss") + "." + ext;
-
 				// 웹서버에 업로드한 파일 저장하는 물리적 경로
 				String saveFilePath = FileUtil.mkdirForDate(FILE_UPLOAD_SAVE_PATH);
-
+				// 파일 업로드를 위한 경로 잡아주기
 				String fullFileInfo = saveFilePath + "/"+ saveFileName;
 				
-				//for ( int i = 0; i <= MedicienList.length(); i++ )
-
 				// 정상적으로 값이 생성되었는지 로그 찍어서 확인
-				log.info("ext : " + ext);
 				log.info("saveFileName : " + saveFileName);
 				log.info("saveFilePath : " + saveFilePath);
 				log.info("fullFileInfo : " + fullFileInfo);
@@ -91,12 +93,13 @@ package poly.controller;
 				mf.transferTo(new File(fullFileInfo));
 
 				OcrDTO pDTO = new OcrDTO();
-
+				// word들을 담을 객체 
+				pDTO.setUser_no("1");
 				pDTO.setFileName(saveFileName); // 저장되는 파일명
 				pDTO.setFilePath(saveFilePath); // 저장되는 경로
-				pDTO.setExt(ext); // 확장자
 				pDTO.setOrg_file_name(originalFileName);; // 원래이름
-				pDTO.setReg_id("admin");
+				pDTO.setReceive_dt(receive_dt);
+				pDTO.setReg_id("admin"); // user_id
 
 				OcrDTO rDTO = ocrService.getReadforImageText(pDTO);
 
@@ -119,7 +122,7 @@ package poly.controller;
 
 			log.info(this.getClass().getName() + ".getReadforImageText end!");
 
-			return "/ocr/TextFromImage";
+			return "/index";
 		}
 
 }

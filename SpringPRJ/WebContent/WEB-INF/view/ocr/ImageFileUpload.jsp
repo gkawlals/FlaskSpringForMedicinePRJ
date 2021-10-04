@@ -1,19 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>ÀÌ¹ÌÁö·ÎºÎÅÍ ÅØ½ºÆ® ÀÎ½ÄÀ» À§ÇÑ ÆÄÀÏ ¾÷·Îµå ÆäÀÌÁö</title>
+<meta charset="UTF-8">
+<title>ì´ë¯¸ì§€ í…ìŠ¤íŠ¸ ì¸ì‹í•˜ê¸°</title>
+</head>
 <body>
-	<h2>ÀÌ¹ÌÁö ÀÎ½Ä</h2>
-	<hr/>
-	<form name="form1" method="post" enctype="multipart/form-data"	action="/ocr/getReadforImageText.do">
-		<br />
-		ÀÌ¹ÌÁö ÆÄÀÏ ¾÷·Îµå : <input type="file" name="fileUpload" />
-		<br />
-		<br />
-		<input type="submit" value="Àü¼Û" />
+	<h2>ì´ë¯¸ì§€ ì¸ì‹</h2>
+	<hr />
+	<form name="form1" method="post" enctype="multipart/form-data"
+		action="/ocr/getReadForImageText.do">
+		<br /> ì´ë¯¸ì§€ íŒŒì¼ ì—…ë¡œë“œ : <input type="file" name="fileUpload" /> <br /> <br />
+		<input type="submit" value="ì „ì†¡" />
 	</form>
 </body>
 </html>

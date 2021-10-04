@@ -4,11 +4,13 @@ public class OcrDTO {
 	private String filePath; // 저장된 이미지 파일의 파일 저장 경로
 	private String fileName; // 저장된 이미지 파일 이름
 	private String textFromImage; // 저장된 이미지로부터 읽은 글씨
-
+	private String user_no;
+	private String user_id; // 저장 받을 아이디 
 	private String org_file_name; // 원래 파일 이름
 	private String ext; // 확장자
 	private String reg_id; // 등록자
 	private String chg_id; // 수정자
+	private String receive_dt; // 처방받은 날
 
 	public String getFilePath() {
 		return filePath;
@@ -16,6 +18,30 @@ public class OcrDTO {
 
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
+	}
+	
+	public String getUser_id() {
+		return user_id;
+	}
+	
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+	
+	public String getReceive_dt() {
+		return receive_dt;
+	}
+
+	public void setReceive_dt(String receive_dt) {
+		this.receive_dt = receive_dt;
+	}
+	
+	public String getUser_no() {
+		return user_no;
+	}
+
+	public void setUser_no(String user_no) {
+		this.user_no = user_no;
 	}
 
 	public String getFileName() {
