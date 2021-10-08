@@ -37,9 +37,9 @@ public class MainController {
 	@Resource(name="MainService")
 	private IMainService mainService;
 	
-	@RequestMapping(value="AddMedicine.do")
+	@RequestMapping(value="/AddMedicine.do")
 	public String AddMedicine(HttpServletRequest request, HttpServletResponse response, ModelMap model,
-				@RequestParam(value = "fileUpload") MultipartFile mf) throws Exception{
+			@RequestParam(value="fileUpload")MultipartFile mf) throws Exception{
 		
 
 		log.info(this.getClass().getName() + ".getReadforImageText start!");

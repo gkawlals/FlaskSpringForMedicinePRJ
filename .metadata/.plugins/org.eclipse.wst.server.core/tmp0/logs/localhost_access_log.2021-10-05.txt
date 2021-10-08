@@ -1,0 +1,10 @@
+127.0.0.1 - - [05/Oct/2021:09:44:53 +0900] "GET / HTTP/1.1" 200 12889
+0:0:0:0:0:0:0:1 - - [05/Oct/2021:09:45:05 +0900] "GET / HTTP/1.1" 200 12889
+0:0:0:0:0:0:0:1 - - [05/Oct/2021:09:45:05 +0900] "GET /resource/assets/img/avataaars.svg HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [05/Oct/2021:09:45:05 +0900] "GET /resource/css/styles.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [05/Oct/2021:09:45:05 +0900] "GET /resource/js/scripts.js HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [05/Oct/2021:09:45:05 +0900] "GET /resource/assets/img/portfolio/cabin.png HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [05/Oct/2021:09:45:27 +0900] "GET /AddMedicine.do?fileUpload=20210802_21.39.48.png&fileInsert=%EC%A0%9C%EC%B6%9C HTTP/1.1" 404 -
+127.0.0.1 - - [05/Oct/2021:09:52:23 +0900] "GET / HTTP/1.1" 200 12340
+0:0:0:0:0:0:0:1 - - [05/Oct/2021:09:52:57 +0900] "GET / HTTP/1.1" 200 12340
+0:0:0:0:0:0:0:1 - - [05/Oct/2021:09:53:12 +0900] "POST /AddMedicine.do HTTP/1.1" 404 -

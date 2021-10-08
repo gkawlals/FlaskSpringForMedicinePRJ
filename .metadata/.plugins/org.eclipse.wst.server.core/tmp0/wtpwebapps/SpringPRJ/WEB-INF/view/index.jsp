@@ -41,23 +41,10 @@
                     </ul>
                     
                     <!-- Nonne 구간 안보이지만 Insert를 위한 중요한 부분 -->
-                    <form enctype="multipart/form-data" action="/AddMedicine.do" >
-                    	<input type="file" name="fileUpload" id="fileupload" style="display:none" onchilck="FileInsertClick()"/>
+                    <form enctype="multipart/form-data" method="post" action="/AddMedicine.do" >
+                    	<input type="file" name="fileUpload" id="fileupload" style="display:none" onchange="document.all.fileInsert.click()"/>
                     	<input type="submit" name="fileInsert" style="display:none"/>
                     </form>
-                    <!--  -->
-                    <script>
-                    	function FileInsertClick(){
-                    		var fileupload = document.getEleementById("fileupload").value;
-                    		
-                    		if(!fileupload){
-                    			alert(" 파일을 선택해주세요 ! ");
-                    		}else{
-                    			consol.log("fileupload ? : " + fileupload);
-                    			document.all.fileInsert.click();
-                    		}
-                    	}
-                    </script>
                 </div>
             </div>
         </nav>
