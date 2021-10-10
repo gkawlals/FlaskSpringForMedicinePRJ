@@ -43,12 +43,16 @@ import javax.annotation.Resource;
 		/**
 		 * 이미지 인식을 위한 파일업로드 화면 호출
 		 */
-		@RequestMapping(value="/ocr/ImageFileUpload.do")
+		@RequestMapping(value="/ocr/main.do")
 		public String upload() {
 			
-			log.info(this.getClass().getName() + ".imageFileUpload!");
+			log.info(this.getClass().getName() + ".Main Page Start!");
 			
-			return "/ocr/ImageFileUplaod.do";
+			
+			
+			log.info(this.getClass().getName() + ".Main Page End!");
+			
+			return "/ocr/main.do";
 		}
 		
 		/**
@@ -58,7 +62,7 @@ import javax.annotation.Resource;
 		public String getReadforImageText(HttpServletRequest request, HttpServletResponse response, ModelMap model,
 				@RequestParam(value = "fileUpload") MultipartFile mf) throws Exception {
 			
-			log.info(this.getClass().getName() + ".getReadforImageText start!");
+			log.info(this.getClass().getName() + ".getOcr start!");
 
 			// OCR 실행 결과
 			String res = "";
@@ -120,9 +124,9 @@ import javax.annotation.Resource;
 			// 크롤링 결과를 넣어주기
 			model.addAttribute("res", res);
 
-			log.info(this.getClass().getName() + ".getReadforImageText end!");
+			log.info(this.getClass().getName() + ".getOcr end!");
 
-			return "/index";
+			return "/ocr/main.do";
 		}
 
 }

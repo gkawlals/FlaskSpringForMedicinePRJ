@@ -1,0 +1,10 @@
+package poly.service.impl;
+
+import org.springframework.stereotype.Service;
+
+import poly.service.IUserSerive;
+
+@Service("UserService")
+public class UserService implements IUserSerive {
+
+}

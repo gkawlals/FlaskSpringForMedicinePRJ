@@ -1,0 +1,19 @@
+package poly.controller;
+
+import javax.annotation.Resource;
+
+import org.slf4j.Logger;
+import org.springframework.stereotype.Controller;
+
+import poly.service.IUserSerivce;
+
+@Controller
+public class UserController {
+	
+	private Logger log = Logger.getLogger(this.getClass());
+	
+	@Resource(name="UserService")
+	private IUserSerivce userService;
+	
+
+}
