@@ -8,4 +8,6 @@ public interface IUserMapper {
 
 	UserDTO LoginStart(UserDTO pDTO);
 
+	int InsertStart(UserDTO pDTO);
+
 }

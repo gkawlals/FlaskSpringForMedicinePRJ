@@ -1,8 +1,8 @@
 package poly.dto;
 
 public class OcrDTO {
-	private String filePath; // 저장된 이미지 파일의 파일 저장 경로
-	private String fileName; // 저장된 이미지 파일 이름
+	private String save_file_path; // 저장된 이미지 파일의 파일 저장 경로
+	private String save_file_name; // 저장된 이미지 파일 이름
 	private String textFromImage; // 저장된 이미지로부터 읽은 글씨
 	private String user_no;
 	private String user_id; // 저장 받을 아이디 
@@ -12,12 +12,12 @@ public class OcrDTO {
 	private String chg_id; // 수정자
 	private String receive_dt; // 처방받은 날
 
-	public String getFilePath() {
-		return filePath;
+	public String getSave_file_path() {
+		return save_file_path;
 	}
 
-	public void setFilePath(String filePath) {
-		this.filePath = filePath;
+	public void setSave_file_path(String save_file_path) {
+		this.save_file_path = save_file_path;
 	}
 	
 	public String getUser_id() {
@@ -44,12 +44,12 @@ public class OcrDTO {
 		this.user_no = user_no;
 	}
 
-	public String getFileName() {
-		return fileName;
+	public String getSave_file_name() {
+		return save_file_name;
 	}
 
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
+	public void setSave_file_name(String save_file_name) {
+		this.save_file_name = save_file_name;
 	}
 
 	public String getTextFromImage() {

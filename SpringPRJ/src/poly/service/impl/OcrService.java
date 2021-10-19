@@ -32,7 +32,7 @@ public class OcrService implements IOcrService {
 
 		log.info(this.getClass().getName() + ".getFoodInfoFromWEB start!");
 
-		File imageFile = new File(CmmUtil.nvl(pDTO.getFilePath()) + "//" + CmmUtil.nvl(pDTO.getFileName()));
+		File imageFile = new File(CmmUtil.nvl(pDTO.getSave_file_path()) + "//" + CmmUtil.nvl(pDTO.getSave_file_name()));
 
 		//문자열 인식 결과를  DB에 저장
 		ocrMapper.InsertOcrInfo(pDTO);
@@ -40,6 +40,18 @@ public class OcrService implements IOcrService {
 		log.info(this.getClass().getName() + ".getFoodInfoFromWEB End!");
 
 		return pDTO;
+	}
+
+	@Override
+	public int AddMedicine(OcrDTO pDTO) {
+		// TODO Auto-generated method stub
+		return ocrMapper.AddMedicine(pDTO);
+	}
+
+	@Override
+	public int InsertImage(OcrDTO pDTO) {
+		// TODO Auto-generated method stub
+		return ocrMapper.InsertImage(pDTO);
 	}
 
 }

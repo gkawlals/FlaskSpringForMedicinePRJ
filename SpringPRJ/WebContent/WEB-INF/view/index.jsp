@@ -32,13 +32,13 @@
 					<img src="../resource/images/img-01.png" alt="IMG" onclick="location.href='/index.do'">
 				</div>
 
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" antion="../user/LoginStart.do">
 					<span class="login100-form-title">
 						Medicine
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "아아디를 입력해주세">
-						<input class="input100" type="text" name="email" placeholder="ID">
+						<input class="input100" type="text" name="user_id" placeholder="ID">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
@@ -46,7 +46,7 @@
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<input class="input100" type="password" name="pass" placeholder="Password">
+						<input class="input100" type="password" name="user_pwd" placeholder="Password">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>

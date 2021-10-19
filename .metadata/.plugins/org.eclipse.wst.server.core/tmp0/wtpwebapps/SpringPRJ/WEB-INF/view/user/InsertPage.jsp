@@ -32,7 +32,7 @@
 					<img src="../resource/images/img-01.png" alt="IMG"  onclick="location.href='/index.do'">
 				</div>
 
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" action="../user/InsertStart.do">
 					<span class="login100-form-title">
 						Join
 					</span>
@@ -52,17 +52,9 @@
 							<i class="fa fa-envelope" aria-hidden="true"></i>
 						</span>
 					</div>
-					
-					<div class="wrap-input100 validate-input" data-validate = "이메일을 입력해주세요">
-						<input class="input100" type="text" name="user_emain" placeholder="Email">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
-						</span>
-					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "비밀번호를 입력해주세요">
-						<input class="input100" type="password" name="pass" placeholder="Password">
+						<input class="input100" type="password" name="user_pwd" placeholder="Password">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
@@ -70,12 +62,18 @@
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "확인 비밀번호를 입력해주세요">
-						<input class="input100" type="password" name="pass" placeholder="Check Password">
+						<input class="input100" type="password" name="check_pwd" placeholder="Check Password">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
 					</div>
+					<br><br>
+					<script>
+						function Check_pwd(){
+							
+						}
+					</script>
 
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">

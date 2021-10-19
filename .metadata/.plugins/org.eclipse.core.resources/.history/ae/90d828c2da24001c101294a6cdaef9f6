@@ -1,6 +1,0 @@
-package poly.service.impl;
-
-@Service
-public class MainService {
-
-}

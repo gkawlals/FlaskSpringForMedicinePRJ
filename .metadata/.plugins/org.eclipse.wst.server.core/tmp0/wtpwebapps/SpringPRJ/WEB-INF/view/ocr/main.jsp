@@ -4,6 +4,18 @@
 <%@page import="poly.util.CmmUtil" %>
 <%@page import="java.util.List"%>
 <%@page import="poly.dto.OcrDTO"%>
+
+<%
+
+	String ss_user_id = CmmUtil.nvl((String)session.getAttribute("ss_user_id"));
+	String ss_user_pwd = CmmUtil.nvl((String)session.getAttribute("ss_user_id"));
+	String ss_user_name = CmmUtil.nvl((String)session.getAttribute("ss_user_name"));
+	
+	List<OcrDTO> ImageList = ((List<OcrDTO>)request.getAttribute("rList"));
+	
+	List<String> ocrList = ((List<String>)request.getAttribute("ocrList"));
+	
+%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -35,26 +47,147 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                    	<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" data-bs-toggle="modal" data-bs-target="#AddMedicien" >Picture</a></li>
+                    	<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" onclick="document.all.fileUpload.click()" >Picture</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">Logs</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Contact</a></li>
                     </ul>
                     
+                    <a data-bs-toggle="modal" data-bs-target="#ModalDiseane" id="MDiseane" style="display:none" ></a>
+                    <a data-bs-toggle="modal" data-bs-target="#resultOcr" id="TextOcr" style="display:none" ></a>
+                    
                     <!-- Nonne 구간 안보이지만 Insert를 위한 중요한 부분 -->
-                    <form enctype="multipart/form-data" method="post" action="/AddMedicine.do" >
-                    	<input type="file" name="fileUpload" id="fileupload" style="display:none" onchange="document.all.fileInsert.click()"/>
-                    	<input type="submit" name="fileInsert" style="display:none"/>
+                    <form enctype="multipart/form-data" method="post" action="../ocr/fileUpload.do" >
+                    	<input type="file" name="fileUpload" id="fileUpload" style="display:none" accept="image/*" onchange="fileSelect(this)"/>
+                    	<input type="submit" name="fileInsert" id="fileInsert" style="display:none" />
+                    	
                     </form>
+                    <script>
+                
+	                    <!--  FileSelect function start  -->
+	                  	function fileSelect(input){
+	                  		
+	                  		var file_src = input.files[0];
+	                  		
+	                  		// 미리만들어 놓은 div에 text추가
+	                  		var file_name = document.getElementById('fileUpload');
+	                  		file_name.textContent = file_src.file_name;
+	                  		
+	                  		newImage = document.createElement("img");
+	                  		newImage.setAttribute("class", 'img')
+	                  		
+	                  		newImage.src = URL.createObjectURL(file_src);
+	                  		
+	                  		newImage.style.width = "100%";
+	                  	    newImage.style.height = "100%";
+	                  	    newImage.style.objectFit = "contain";
+	                  	    newImage.id = "OcrID";
+	                  		
+	                  		var container = document.getElementById('Select_image');
+	                  	    container.appendChild(newImage);
+	                  		
+	                  		if(file_name != null){
+	                  			
+	                  			document.all.MDiseane.click();
+	                  			
+	                  		}else {
+	                  			
+	                  			alert("파일 선택은 필수 입니다");
+	                  			
+	                  		}
+	                  	
+	                  		
+	                  	}
+	                  	
+	                  
+	                  	
+                    </script>
                 </div>
             </div>
         </nav>
+        
+                
+        <div class="portfolio-modal modal fade" id="ModalDiseane" tabindex="-1" aria-labelledby="MDiseane" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container" id="Medicine_no">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">처방 추가하기</h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                    	<input type="text" name="medicine_cnt" style="display:none" />
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    
+                                    <!-- Portfolio Modal - Text-->
+                                    <p class="mb-4">선택한 이미지</p>
+                                    <div id="Select_image">
+                                    </div>
+                                    <button class="btn btn-primary" id="MBDiseane" onclick="fileInsert()">
+                                        Next
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+        	function fileInsert(){
+        		 
+        		document.all.fileInsert.click();
+        		
+        	}
+        </script>
+        <div class="portfolio-modal modal fade" id="resultOcr" tabindex="-1" aria-labelledby="resultOcr" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container" id="Medicine_no">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">처방된 약물</h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom"></div>
+                                    <!-- Portfolio Modal - Image-->
+                                    
+                                    <!-- Portfolio Modal - Text-->
+                                    
+                                    <p class="mb-4">다시 작성해 주세요! </p>
+	                                    <div class="resultText">
+									        <%if( ocrList != null ) { %>
+									     		<% for( String word : ocrList){ %>
+									     		<div>
+									     			<input type="text" name="medicine_name" value="<%=word%>"/>
+									     		</div>	
+									    		<% } %>
+									    	<%} %>
+	                                    </div>
+                                    <button class="btn btn-primary" id="MBDiseane" onclick="OcrText()">
+                                        Next
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
         <!-- Masthead-->
         <header class="masthead bg-primary text-white text-center">
             <div class="container d-flex align-items-center flex-column">
                 <!-- Masthead Avatar Image-->
                 <img class="masthead-avatar mb-5" src="../resource/assets/img/avataaars.svg" alt="..." />
                 <!-- Masthead Heading-->
-                <h1 class="masthead-heading text-uppercase mb-0">Start Medicine</h1>
+                <h1 class="masthead-heading text-uppercase mb-0"><%=ss_user_name %>님 <br>Start MDP</h1>
                 <!-- Icon Divider-->
                 <div class="divider-custom divider-light">
                     <div class="divider-custom-line"></div>
@@ -62,7 +195,7 @@
                     <div class="divider-custom-line"></div>
                 </div>
                 <!-- Masthead Subheading-->
-                <p class="masthead-subheading font-weight-light mb-0">각각의 병원 - 다르게 처방되는 약들 - 맞는 처방일까?</p>
+                <p class="masthead-subheading font-weight-light mb-0">병원마다 - 다르게 처방되는 약들 - 바른 처방일까?</p>
             </div>
         </header>
         <!-- Portfolio Section-->
@@ -93,7 +226,7 @@
                      <!-- Ajax 구간 끝-->
                      
                 </div>
-            </div>
+            </div>                                  
         </section>
         
         <!-- Footer-->
@@ -102,7 +235,7 @@
                 <div class="row">
                     <!-- Footer Location-->
                     <div class="col-lg-4 mb-5 mb-lg-0">
-                        <h4 class="text-uppercase mb-4">To much Information</h4>
+                        <h4 class="text-uppercase mb-4">Developer Information</h4>
                         <p class="lead mb-0">
                             1997 - 01 - 21 / MEN
                             <br />
@@ -114,7 +247,7 @@
                     <div class="col-lg-4">
                         <p class="lead mb-0">
                             혼자 자랑해보는 
-                            <a href="https://github.com/gkawlals">My project page</a>
+                            <a href="https://github.com/gkawlals">My Git page</a>
                             .
                         </p>
                     </div>
@@ -163,9 +296,8 @@
         </div>
         
         <!-- Ajax 구간 끝  -->
-        
         <!-- 처방전을 추가할 Modal Page -->
-        <div class="portfolio-modal modal fade" id="AddMedicien" tabindex="-1" aria-labelledby="AddMedicien" aria-hidden="true">
+        <div class="portfolio-modal modal fade" id="AddModal" tabindex="-1" aria-labelledby="AddMedicien" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
@@ -192,22 +324,6 @@
                 </div>
             </div>
         </div>
-        <!--  FileSelect function start  -->
-        <script>
-          	function fileSelect(){
-          		
-          		var receive_dt = document.getElementById("receive_dt").value;
-          		
-				// 처방받은 날짜를 입력했는지 즉 if(!Receive_dt)를 확인     
-				if(!receive_dt){
-					alert(" 처방전을 받은 날짜를 입력해주세요 !");
-				}else {
-					document.all.fileupload.click()
-				}
-          		
-          		
-           	}
-        </script>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

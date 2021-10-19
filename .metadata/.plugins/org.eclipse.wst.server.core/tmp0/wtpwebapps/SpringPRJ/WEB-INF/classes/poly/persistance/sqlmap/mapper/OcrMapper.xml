@@ -4,16 +4,35 @@
 <mapper namespace="poly.persistance.mapper.IOcrMapper">
 
 	<!-- 회원 가입하기(회원정보 등록하기) -->
-	<insert id="InsertOcrInfo" parameterType="OcrDTO">
-		INSERT INTO OCR_INFO
-			(
+	<insert id="InsertImage" parameterType="OcrDTO">
+		INSERT INTO Medicine.MEDINE_TABLE
+			(	
 				USER_ID,
-				MEDICNE_NAME
+				SAVE_FILE_NAME,
+				SAVE_FILE_PATH,
+				ORG_FILE_NAME
 			)
 		VALUES(
-				#{reg_id},
+				#{user_id},
+				#{save_file_name},
+				#{save_file_path},
 				#{org_file_name}
 		)
 	</insert>
+	
+	<insert id="InsertMD" parameterType="OcrDTO">
+		INSERT INTO Medicine.MEDINE_TABLE
+			(
+				MEDICINE_NAME,
+				RECEIVE_DT
+			)
+		VALUES(
+				#{medicine_name},
+				#{receive_dt}
+				
+		)
+	</insert>
+	
+	
 		
 </mapper>
