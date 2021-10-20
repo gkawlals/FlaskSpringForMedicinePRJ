@@ -1,6 +1,7 @@
 package poly.service.impl;
 
 import java.io.File;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -52,6 +53,12 @@ public class OcrService implements IOcrService {
 	public int InsertImage(OcrDTO pDTO) {
 		// TODO Auto-generated method stub
 		return ocrMapper.InsertImage(pDTO);
+	}
+
+	@Override
+	public List<OcrDTO> getOcrList() {
+		// TODO Auto-generated method stub
+		return ocrMapper.getOcrList();
 	}
 
 }

@@ -1,6 +1,7 @@
 package poly.dto;
 
 public class OcrDTO {
+	private String medicine_no; // 저장된 이미지 번호
 	private String save_file_path; // 저장된 이미지 파일의 파일 저장 경로
 	private String save_file_name; // 저장된 이미지 파일 이름
 	private String textFromImage; // 저장된 이미지로부터 읽은 글씨
@@ -11,6 +12,14 @@ public class OcrDTO {
 	private String reg_id; // 등록자
 	private String chg_id; // 수정자
 	private String receive_dt; // 처방받은 날
+	
+	public String getMedicine_no() {
+		return medicine_no;
+	}
+
+	public void setMedicine_no(String medicine_no) {
+		this.medicine_no = medicine_no;
+	}
 
 	public String getSave_file_path() {
 		return save_file_path;

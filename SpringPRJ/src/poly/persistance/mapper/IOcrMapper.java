@@ -1,5 +1,7 @@
 package poly.persistance.mapper;
 
+import java.util.List;
+
 import config.Mapper;
 import poly.dto.OcrDTO;
 
@@ -13,6 +15,8 @@ public interface IOcrMapper {
 	int AddMedicine(OcrDTO pDTO);
 
 	int InsertImage(OcrDTO pDTO);
+
+	List<OcrDTO> getOcrList();
 	
 	
 }

@@ -11,9 +11,7 @@
 	String ss_user_pwd = CmmUtil.nvl((String)session.getAttribute("ss_user_id"));
 	String ss_user_name = CmmUtil.nvl((String)session.getAttribute("ss_user_name"));
 	
-	List<OcrDTO> ImageList = ((List<OcrDTO>)request.getAttribute("rList"));
-	
-	List<String> ocrList = ((List<String>)request.getAttribute("ocrList"));
+	List<OcrDTO> ocrList = ((List<OcrDTO>)request.getAttribute("ocrList"));
 	
 %>
 <html>
@@ -130,15 +128,16 @@
                                         Next
                                     </button>
                                 </div>
-                            </div>
+                            </div> 
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        
         <script>
         	function fileInsert(){
-        		 
+        		
         		document.all.fileInsert.click();
         		
         	}
@@ -161,13 +160,9 @@
                                     
                                     <p class="mb-4">다시 작성해 주세요! </p>
 	                                    <div class="resultText">
-									        <%if( ocrList != null ) { %>
-									     		<% for( String word : ocrList){ %>
-									     		<div>
-									     			<input type="text" name="medicine_name" value="<%=word%>"/>
-									     		</div>	
-									    		<% } %>
-									    	<%} %>
+								     		<div>
+								     			<input type="text" name="medicine_name" value=""/>
+								     		</div>	
 	                                    </div>
                                     <button class="btn btn-primary" id="MBDiseane" onclick="OcrText()">
                                         Next
@@ -198,6 +193,55 @@
                 <p class="masthead-subheading font-weight-light mb-0">병원마다 - 다르게 처방되는 약들 - 바른 처방일까?</p>
             </div>
         </header>
+        
+        <script>
+        	function OcrList(){ 
+        		var medicine_no = $('#medicine_no').val();
+        		
+        		if($('#medicine_no').val() == ""){
+    				$('#medicine_no').focus();
+    			}
+    			
+    			console.log("medicine_no : " + medicine_no);
+    			
+    			$.ajax({
+    				url : '/ocr/ocrList.do',
+    				type : 'post',
+    				data : {
+    					"medicine_no" : medicine_no
+    				},
+    				success : function(data) { 
+    					console.log("test");
+    					
+    					var userHTML = ""; // 게시판위의 나타내어 줄 userId, userProfile 정보 들고오기
+    					userHTML = '<div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">';
+    					userHTML = '<div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">;
+    					userHTML = '<div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div></div>';
+    					userHTML = '<div name="medicine_no" style="display:none">'+data.getMedicine_no()+'"</div>';
+    					userHTML = '<img class="img-fluid" src=" '+ data.getSave_file_path()' " alt="..." /></div></div>';
+    					
+    					if(data.length == 0){
+    						userHTML = '<div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">';
+    						userHTML = '<div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">';
+    						userHTML = '<div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div></div>';
+    						userHTML = '<img class="img-fluid" src="../resource/assets/img/portfolio/cabin.png" alt="..." /></div></div> '
+    					}else{
+    						for(var i = 0;  i < data.lenth(); i++){
+    							userHTML = '<div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">';
+    	    					userHTML = '<div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">;
+    	    					userHTML = '<div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div></div>';
+    	    					userHTML = '<div name="medicine_no" style="display:none">'+data.getMedicine_no()+'"</div>';
+    	    					userHTML = '<img class="img-fluid" src=" '+ data.getSave_file_path()' " alt="..." /></div></div>';
+    						}
+    						$("#col-md-6 col-lg-4 mb-5").html(userHTML);
+    					}
+    				}
+    			});
+        		
+        	}
+        </script>
+        
+        
         <!-- Portfolio Section-->
         <section class="page-section portfolio" id="portfolio">
             <div class="container">
@@ -216,19 +260,55 @@
                  	<!-- List기준으로 불러오기 -->
                     <!-- Portfolio Item 1-->
                     <div class="col-md-6 col-lg-4 mb-5">
-                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
+                    <%for(OcrDTO Medicine : ocrList ) {%>
+                    	<div name="medicine_no" style="display:none"> <%=Medicine.getMedicine_no()%> </div>
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal<%=Medicine.getMedicine_no()%>">
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="../resource/assets/img/portfolio/cabin.png" alt="..." />
+                            <img class="img-fluid" src="<%=Medicine.getSave_file_path() %>" alt="..." />
                         </div>
                     </div>
                      <!-- Ajax 구간 끝-->
-                     
+                     <%} %>
                 </div>
             </div>                                  
         </section>
-        
+        <!-- Portfolio Modal -->
+        <%for(OcrDTO Medicine : ocrList ) {%>
+        <div class="portfolio-modal modal fade" id="portfolioModal<%=Medicine.getMedicine_no()%>" tabindex="-1" aria-labelledby="portfolioModal<%=Medicine.getMedicine_no()%>" aria-hidden="true">
+            <div class="modal-dialog modal-xl"><%=Medicine.getMedicine_no()%>
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title--><!-- 처방받은 날짜를 제목으로 띄우기 -->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">처방전 <!-- CRE_DT --></h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <!-- Image_no 기준으로 이미지 경로 불러오기-->
+                                    <img class="img-fluid rounded mb-5" src="<%=Medicine.getSave_file_path() %>" alt="..." />
+                                    <!-- Portfolio Modal - Text-->
+                                    <p class="mb-4"><!-- Medicine_name(약 이름 ) 나열하기 --></p>
+                                    <button class="btn btn-primary" href="#!" data-bs-dismiss="modal">
+                                        <i class="fas fa-times fa-fw"></i>
+                                        Close Window
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%} %>
         <!-- Footer-->
         <footer class="footer text-center">
             <div class="container">
@@ -260,41 +340,6 @@
         </div>
         
         <!-- Modal Ajax 구간 -->
-        
-        <!-- Portfolio Modal -->
-        <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" aria-labelledby="portfolioModal1" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                    <div class="modal-body text-center pb-5">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-8">
-                                    <!-- Portfolio Modal - Title--><!-- 처방받은 날짜를 제목으로 띄우기 -->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Log Cabin<!-- CRE_DT --></h2>
-                                    <!-- Icon Divider-->
-                                    <div class="divider-custom">
-                                        <div class="divider-custom-line"></div>
-                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                        <div class="divider-custom-line"></div>
-                                    </div>
-                                    <!-- Portfolio Modal - Image-->
-                                    <!-- Image_no 기준으로 이미지 경로 불러오기-->
-                                    <img class="img-fluid rounded mb-5" src="../resource/assets/img/portfolio/cabin.png" alt="..." />
-                                    <!-- Portfolio Modal - Text-->
-                                    <p class="mb-4"><!-- Medicine_name(약 이름 ) 나열하기 --></p>
-                                    <button class="btn btn-primary" href="#!" data-bs-dismiss="modal">
-                                        <i class="fas fa-times fa-fw"></i>
-                                        Close Window
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
         <!-- Ajax 구간 끝  -->
         <!-- 처방전을 추가할 Modal Page -->
         <div class="portfolio-modal modal fade" id="AddModal" tabindex="-1" aria-labelledby="AddMedicien" aria-hidden="true">

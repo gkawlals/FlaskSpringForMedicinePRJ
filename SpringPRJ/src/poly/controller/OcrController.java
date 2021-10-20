@@ -1,8 +1,6 @@
 package poly.controller;
 
 	import java.io.File;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -16,8 +14,6 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-import org.springframework.data.mongodb.core.aggregation.StringOperators.IndexOfBytes;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,17 +44,65 @@ import poly.util.UrlUtil;
 
 		// 업로드되는 파일이 저장되는 기본 폴더 설정(자바에서 경로는 /로 표현함)
 		//final private String FILE_UPLOAD_SAVE_PATH = "/data/image/"; // C:\\upload 폴더에 저장
-		final private String FILE_UPLOAD_SAVE_PATH = "/Users/hamjimin/upload/"; // C:\\upload 폴더에 저장
+		final private String FILE_UPLOAD_SAVE_PATH = "/Users/hamjimin/Desktop/Spring_Settings/Spring_Flask/SpringPRJ/WebContent/resource/ocrImage/"; // C:\\upload 폴더에 저장
 		
 		/**
 		 * 이미지 인식을 위한 파일업로드 화면 호출
 		 */
-		@RequestMapping(value="ocr/main")
-		public String upload() {
-			
+		
+		@RequestMapping(value="ocr/CheckMedicine")
+		public String CheckMedicine() {
 			log.info(this.getClass().getName() + ".Main Page Start!");
 			
 			
+			
+			log.info(this.getClass().getName() + ".Main Page End!");
+			
+			return "ocr/CheckMedicine";
+		}
+		
+		@RequestMapping(value="ocr/ocrList")
+		public String ocrList(ModelMap model) {
+			
+			List<OcrDTO> ocrList = ocrService.getOcrList();
+			
+			if(ocrList == null) {
+				log.info(" List load Failed !");
+				ocrList = new ArrayList<>();
+			}
+			
+			for(OcrDTO e : ocrList) {
+				log.info(" Medicine_no : " + e.getMedicine_no());
+			}
+			
+			log.info(" Medicine_no 불러오기");
+			
+			model.addAttribute("ocrList", ocrList);
+			
+			return "ocr/main";
+		}
+		
+		@RequestMapping(value="ocr/main")
+		public String upload(ModelMap model) {
+			
+			log.info(this.getClass().getName() + ".Main Page Start!");
+			
+			List<OcrDTO> ocrList = ocrService.getOcrList();
+			
+			if(ocrList == null) {
+				log.info(" List load Failed !");
+				ocrList = new ArrayList<>();
+			}
+			log.info(" Medicine_no 불러오기");
+			
+			model.addAttribute("ocrList", ocrList);
+			
+			
+			for(OcrDTO e : ocrList) {
+				log.info(" Medicine_no : " + e.getMedicine_no());
+			}
+			
+			ocrList = null;
 			
 			log.info(this.getClass().getName() + ".Main Page End!");
 			
@@ -126,18 +170,22 @@ import poly.util.UrlUtil;
 					
 						log.info(this.getClass().getName() + "Insert Image success! ");
 						
-						List<String> ocrList = getApiFlask(fullFileInfo);
+						List<String> OTList = getApiFlask(fullFileInfo);
 						
-						model.addAttribute("ocrList", ocrList);
+						model.addAttribute("fullFileInfo",fullFileInfo);
 						
-						return "ocr/main";
+						model.addAttribute("OTList",OTList);
+						
+						log.info("OTList : " + OTList);
+						
+						return "ocr/CheckMedicine";
 					
 					}
 					
 			}
 				log.info(this.getClass().getName() + ".getReadforImageText end!");
 				
-				return "ocr/main";
+				return "ocr/CheckMedicine";
 		}
 		
 		

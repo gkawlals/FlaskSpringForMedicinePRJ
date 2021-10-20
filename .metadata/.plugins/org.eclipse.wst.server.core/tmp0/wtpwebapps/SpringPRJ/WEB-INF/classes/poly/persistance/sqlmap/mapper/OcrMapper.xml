@@ -33,6 +33,19 @@
 		)
 	</insert>
 	
+	<select id="getOcrList" resultType="OcrDTO">
+		
+		SELECT 
+		
+			MEDICINE_NO,
+			SAVE_FILE_NAME,
+			SAVE_FILE_PATH,
+			ORG_FILE_NAME
+			
+		 FROM Medicine.MEDINE_TABLE;
+		
+	</select>
+	
 	
 		
 </mapper>
