@@ -8,7 +8,6 @@
 <%
 
 	String ss_user_id = CmmUtil.nvl((String)session.getAttribute("ss_user_id"));
-	String ss_user_pwd = CmmUtil.nvl((String)session.getAttribute("ss_user_id"));
 	String ss_user_name = CmmUtil.nvl((String)session.getAttribute("ss_user_name"));
 	
 	List<OcrDTO> ocrList = ((List<OcrDTO>)request.getAttribute("ocrList"));
@@ -46,8 +45,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                     	<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" onclick="document.all.fileUpload.click()" >Picture</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">Logs</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Contact</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact" onclick="/user/logOut.do">Logout</a></li>
                     </ul>
                     
                     <a data-bs-toggle="modal" data-bs-target="#ModalDiseane" id="MDiseane" style="display:none" ></a>
@@ -142,47 +140,13 @@
         		
         	}
         </script>
-        <div class="portfolio-modal modal fade" id="resultOcr" tabindex="-1" aria-labelledby="resultOcr" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                    <div class="modal-body text-center pb-5">
-                        <div class="container" id="Medicine_no">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-8">
-                                    <!-- Portfolio Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">처방된 약물</h2>
-                                    <!-- Icon Divider-->
-                                    <div class="divider-custom"></div>
-                                    <!-- Portfolio Modal - Image-->
-                                    
-                                    <!-- Portfolio Modal - Text-->
-                                    
-                                    <p class="mb-4">다시 작성해 주세요! </p>
-	                                    <div class="resultText">
-								     		<div>
-								     			<input type="text" name="medicine_name" value=""/>
-								     		</div>	
-	                                    </div>
-                                    <button class="btn btn-primary" id="MBDiseane" onclick="OcrText()">
-                                        Next
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        
         <!-- Masthead-->
         <header class="masthead bg-primary text-white text-center">
             <div class="container d-flex align-items-center flex-column">
                 <!-- Masthead Avatar Image-->
                 <img class="masthead-avatar mb-5" src="../resource/assets/img/avataaars.svg" alt="..." />
                 <!-- Masthead Heading-->
-                <h1 class="masthead-heading text-uppercase mb-0"><%=ss_user_name %>님 <br>Start MDP</h1>
+                <h1 class="masthead-heading text-uppercase mb-0"><%=ss_user_id %> <br>Start MDP</h1>
                 <!-- Icon Divider-->
                 <div class="divider-custom divider-light">
                     <div class="divider-custom-line"></div>
@@ -215,10 +179,10 @@
     					
     					var userHTML = ""; // 게시판위의 나타내어 줄 userId, userProfile 정보 들고오기
     					userHTML = '<div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">';
-    					userHTML = '<div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">;
+    					userHTML = '<div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">';
     					userHTML = '<div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div></div>';
     					userHTML = '<div name="medicine_no" style="display:none">'+data.getMedicine_no()+'"</div>';
-    					userHTML = '<img class="img-fluid" src=" '+ data.getSave_file_path()' " alt="..." /></div></div>';
+    					userHTML = '<img class="img-fluid" src=" '+ data.getSave_file_path() + '" alt="..." /></div></div>';
     					
     					if(data.length == 0){
     						userHTML = '<div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">';
@@ -228,10 +192,10 @@
     					}else{
     						for(var i = 0;  i < data.lenth(); i++){
     							userHTML = '<div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">';
-    	    					userHTML = '<div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">;
+    	    					userHTML = '<div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">';
     	    					userHTML = '<div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div></div>';
     	    					userHTML = '<div name="medicine_no" style="display:none">'+data.getMedicine_no()+'"</div>';
-    	    					userHTML = '<img class="img-fluid" src=" '+ data.getSave_file_path()' " alt="..." /></div></div>';
+    	    					userHTML = '<img class="img-fluid" src=" '+ data.getSave_file_path()+' " alt="..." /></div></div>';
     						}
     						$("#col-md-6 col-lg-4 mb-5").html(userHTML);
     					}
@@ -254,24 +218,21 @@
                     <div class="divider-custom-line"></div>
                 </div>
                 <!-- Portfolio Grid Items-->
-                <div class="row justify-content-center">
-                
-                 	<!-- Ajax 구간 시작 -->
-                 	<!-- List기준으로 불러오기 -->
-                    <!-- Portfolio Item 1-->
-                    <div class="col-md-6 col-lg-4 mb-5">
-                    <%for(OcrDTO Medicine : ocrList ) {%>
-                    	<div name="medicine_no" style="display:none"> <%=Medicine.getMedicine_no()%> </div>
-                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal<%=Medicine.getMedicine_no()%>">
-                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid" src="<%=Medicine.getSave_file_path() %>" alt="..." />
-                        </div>
-                    </div>
-                     <!-- Ajax 구간 끝-->
-                     <%} %>
-                </div>
+                <%for(OcrDTO Medicine : ocrList ) {%>
+                	<%if(Medicine.getMedicine_name() != null){%>
+	                <div class="row justify-content-center">
+	                    <div class="col-md-6 col-lg-4 mb-5">
+	                    	<div name="medicine_no" style="display:none"> <%=Medicine.getMedicine_no()%> </div>
+	                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal<%=Medicine.getMedicine_no()%>">
+	                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+	                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+	                            </div>
+	                            <img class="img-fluid" src="../resource/ocrImage/upload/<%=Medicine.getSave_folder_name()%>/<%=Medicine.getSave_file_name() %>" alt="..." />
+	                        </div>
+	                    </div>
+	                </div>
+	                <%} %>
+              <%} %>
             </div>                                  
         </section>
         <!-- Portfolio Modal -->
@@ -294,8 +255,11 @@
                                     </div>
                                     <!-- Portfolio Modal - Image-->
                                     <!-- Image_no 기준으로 이미지 경로 불러오기-->
-                                    <img class="img-fluid rounded mb-5" src="<%=Medicine.getSave_file_path() %>" alt="..." />
+                                    <img class="img-fluid rounded mb-5" src="../resource/ocrImage/upload/<%=Medicine.getSave_folder_name()%>/<%=Medicine.getSave_file_name() %>" alt="..." />
                                     <!-- Portfolio Modal - Text-->
+                                    <div>
+                                    	<p class="masthead-subheading font-weight-light mb-0"><%=Medicine.getMedicine_name() %></p>
+                                    </div>
                                     <p class="mb-4"><!-- Medicine_name(약 이름 ) 나열하기 --></p>
                                     <button class="btn btn-primary" href="#!" data-bs-dismiss="modal">
                                         <i class="fas fa-times fa-fw"></i>

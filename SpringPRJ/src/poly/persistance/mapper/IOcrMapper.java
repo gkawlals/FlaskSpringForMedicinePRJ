@@ -17,6 +17,10 @@ public interface IOcrMapper {
 	int InsertImage(OcrDTO pDTO);
 
 	List<OcrDTO> getOcrList();
+
+	OcrDTO SelectMD(OcrDTO pDTO);
+
+	int InsertMD(OcrDTO pDTO);
 	
 	
 }

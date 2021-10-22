@@ -11,7 +11,7 @@ public class FileUtil {
 	 */
 	public static String mkdirForDate(String uploadDir) {
 
-		String path = uploadDir + DateUtil.getDateTime("/yyyy/MM/dd"); // 폴더 경로
+		String path = uploadDir + DateUtil.getDateTime("/yyyy.MM.dd"); // 폴더 경로
 		
 		File Folder = new File(path);
 

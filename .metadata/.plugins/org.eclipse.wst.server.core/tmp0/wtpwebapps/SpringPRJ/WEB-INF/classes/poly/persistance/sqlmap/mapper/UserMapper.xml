@@ -32,7 +32,15 @@
 			#{user_id}	 
 			
 			)
-	</insert>	
+	</insert>
+	
+	<select id="userIdCheck" parameterType="String" resultType="int">
+		<!-- 아이디 기준으로 중복체크   -->
+
+		SELECT COUNT(*) AS EXISTS_NY FROM Medicine.USER_TABLE WHERE USER_ID = #{user_id};
+  		
+  		
+	</select>	
 	
 
 </mapper>

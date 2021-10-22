@@ -32,4 +32,10 @@ public class UserService implements IUserSerivce {
 		return userMapper.InsertStart(pDTO);
 	}
 
+	@Override
+	public int userIdCheck(String user_id) {
+		
+		return userMapper.userIdCheck(user_id);
+	}
+
 }

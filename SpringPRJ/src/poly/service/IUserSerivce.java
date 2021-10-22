@@ -8,4 +8,6 @@ public interface IUserSerivce {
 
 	int InsertStart(UserDTO pDTO) throws Exception;
 
+	public int userIdCheck(String user_id);
+
 }

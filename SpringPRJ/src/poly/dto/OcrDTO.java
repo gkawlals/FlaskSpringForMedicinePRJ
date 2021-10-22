@@ -4,15 +4,24 @@ public class OcrDTO {
 	private String medicine_no; // 저장된 이미지 번호
 	private String save_file_path; // 저장된 이미지 파일의 파일 저장 경로
 	private String save_file_name; // 저장된 이미지 파일 이름
-	private String textFromImage; // 저장된 이미지로부터 읽은 글씨
+	private String medicine_name; // 저장된 이미지로부터 읽은 글씨
 	private String user_no;
-	private String user_id; // 저장 받을 아이디 
+	private String user_id; // 저장 받을 아이디
 	private String org_file_name; // 원래 파일 이름
 	private String ext; // 확장자
 	private String reg_id; // 등록자
 	private String chg_id; // 수정자
 	private String receive_dt; // 처방받은 날
-	
+	private String save_folder_name; // 임의로 만들어주는 폴더의 겨
+
+	public String getSave_folder_name() {
+		return save_folder_name;
+	}
+
+	public void setSave_folder_name(String save_folder_name) {
+		this.save_folder_name = save_folder_name;
+	}
+
 	public String getMedicine_no() {
 		return medicine_no;
 	}
@@ -28,15 +37,15 @@ public class OcrDTO {
 	public void setSave_file_path(String save_file_path) {
 		this.save_file_path = save_file_path;
 	}
-	
+
 	public String getUser_id() {
 		return user_id;
 	}
-	
+
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
-	
+
 	public String getReceive_dt() {
 		return receive_dt;
 	}
@@ -44,7 +53,7 @@ public class OcrDTO {
 	public void setReceive_dt(String receive_dt) {
 		this.receive_dt = receive_dt;
 	}
-	
+
 	public String getUser_no() {
 		return user_no;
 	}
@@ -61,12 +70,12 @@ public class OcrDTO {
 		this.save_file_name = save_file_name;
 	}
 
-	public String getTextFromImage() {
-		return textFromImage;
+	public String getMedicine_name() {
+		return medicine_name;
 	}
 
-	public void setTextFromImage(String textFromImage) {
-		this.textFromImage = textFromImage;
+	public void setMedicine_name(String medicine_name) {
+		this.medicine_name = medicine_name;
 	}
 
 	public String getOrg_file_name() {

@@ -3,10 +3,15 @@
 <%@page import="java.util.List"%>
 <%@page import="poly.dto.OcrDTO"%>
 
-<%	
+<%
+
 	List<String> OTList = ((List<String>)request.getAttribute("OTList"));
 
 	String fullFileInfo = (String)request.getAttribute("fullFileInfo");
+	
+	String medicine_no = (String)request.getAttribute("medicine_no");	
+	
+	
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,16 +65,59 @@
                 </div>
                 <!-- Portfolio Grid Items-->
                 <div class="row justify-content-center">
+          		<form action="/ocr/MD_name_insert.do" method="post">
                     <!-- Portfolio Item 1-->
-                    <img src="<%=fullFileInfo %>" alt="Not Found Image" name="fullFileInfo" />
+                    <img class="img-fluid"  src="../resource/ocrImage/upload/<%=fullFileInfo%>" alt="Not Found Image" name="fullFileInfo" />
                     <%for(String MD_name : OTList) {%>
-                    	<input type="text" value="<%=MD_name%>">
+                   
+	                    <div>
+	                    	약 이름 : <input type="text" name="MD_name" style="width:90%" value="<%=MD_name%>">
+	                    </div>
+	                    
                     <%} %>
-                    <input class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" 
-                    type="button" value="저장하기" onclick="location.href='ocr/MD_name_insert()'")>
+                    <br>
+                    <div id="MD_container">
+                    <input type="text" id="MD_list" style="display:none" name="MD_list" value="" />
+                    </div>
+                    <input type="hidden" id="medicine_no" name="medicine_no" value="<%=medicine_no %>"/>
+                    <input id="MD_plus" class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" value="저장하기" onclick="PlusString()"/>
+                    <input type="submit" name="GoInsert" id="GoInsert" style="display:none"/>
+                </form>
                 </div>
             </div>
         </section>
+        <script type="text/javascript">
+        function PlusString(){
+        	$(function(){
+        		$('#MD_plus').on('click', function(){
+	        		var MD_cnt = $("input[name=MD_name]").length;
+	        		
+	        		var MD_name = new Array(MD_cnt);
+	        		
+	        		var MD_names = '';
+	        		
+	        		
+	                for(var i=0; i < MD_cnt; i++)
+	                {        
+	                	
+	                	MD_name[i] = $("input[name=MD_name]").eq(i).val();
+	                	
+	                	MD_names = MD_names + ' ' + MD_name[i]
+	                }
+	                
+	                console.log(MD_names)
+	                
+	                var String_MD_names = MD_names.toString()
+	                
+	                $('input[name=MD_list]').attr('value',MD_names);
+	                
+	                document.all.GoInsert.click();
+	               
+        		});
+        	});
+
+        }
+        </script>
         <!-- Footer-->
         <!-- Copyright Section-->
         <div class="copyright py-4 text-center text-white">
@@ -105,7 +153,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="../resource/js/scripts.js"></script>
-
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.0.js"></script>
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <!-- * *                               SB Forms JS                               * *-->
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->

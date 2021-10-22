@@ -1,30 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="log.info"/>
+		<item key="selection" value="List"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="System.out.println"/>
-			<item value="user_email"/>
-			<item value="er_mail"/>
-			<item value="images"/>
-			<item value="href=&quot;images"/>
-			<item value="href=&quot;css"/>
-			<item value="css"/>
-			<item value="vendor"/>
-			<item value="index"/>
-			<item value="commons"/>
-			<item value="fileSelect"/>
-			<item value="type=&quot;text&quot;"/>
-			<item value="Log"/>
-			<item value="log"/>
-			<item value="LOG"/>
+			<item value="List"/>
+			<item value="get"/>
+			<item value="ocr/main.do"/>
+			<item value="님"/>
+			<item value="ss_user_name"/>
+			<item value=" checkId"/>
+			<item value=".val()"/>
+			<item value="value;"/>
+			<item value="value"/>
+			<item value="login"/>
+			<item value="portfolio-item-caption"/>
+			<item value="portfolio-item-caption d-flex align-items-center"/>
+			<item value="portfolio-item-caption d-flex align-items-center justify-content-center"/>
+			<item value="h-100 w-100"/>
+			<item value="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100"/>
 		</list>
 		<list key="replacehistory">
+			<item value=".value"/>
+			<item value=".val();"/>
+			<item value="medicine_name"/>
+			<item value="save_file_path"/>
 			<item value="log.info"/>
 			<item value="ph_no"/>
 			<item value="er_email"/>
@@ -36,12 +40,11 @@
 			<item value="/"/>
 			<item value="../resource/css/styles.css"/>
 			<item value="../resource/assets"/>
-			<item value="../resource/"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1066"/>
-		<item key="DIALOG_Y_ORIGIN" value="136"/>
+		<item key="DIALOG_X_ORIGIN" value="497"/>
+		<item key="DIALOG_Y_ORIGIN" value="325"/>
 		<item key="DIALOG_WIDTH" value="292"/>
 		<item key="DIALOG_HEIGHT" value="402"/>
 		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>

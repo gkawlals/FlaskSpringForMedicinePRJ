@@ -569,7 +569,8 @@ progress {
 
 .img-fluid {
   max-width: 100%;
-  height: auto;
+  max-height : 300px;
+  
 }
 
 .img-thumbnail {
@@ -11027,6 +11028,7 @@ html {
   position: relative;
   display: block;
   max-width: 25rem;
+  max-width: 30rem;
   border-radius: 0.5rem;
   overflow: hidden;
 }

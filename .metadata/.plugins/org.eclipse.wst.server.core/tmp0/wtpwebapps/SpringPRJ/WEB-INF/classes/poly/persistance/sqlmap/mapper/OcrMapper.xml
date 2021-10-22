@@ -10,28 +10,30 @@
 				USER_ID,
 				SAVE_FILE_NAME,
 				SAVE_FILE_PATH,
+				SAVE_FOLDER_NAME,
 				ORG_FILE_NAME
 			)
 		VALUES(
 				#{user_id},
 				#{save_file_name},
 				#{save_file_path},
+				#{save_folder_name},
 				#{org_file_name}
 		)
 	</insert>
 	
-	<insert id="InsertMD" parameterType="OcrDTO">
-		INSERT INTO Medicine.MEDINE_TABLE
-			(
-				MEDICINE_NAME,
-				RECEIVE_DT
-			)
-		VALUES(
-				#{medicine_name},
-				#{receive_dt}
-				
-		)
-	</insert>
+	<select id="SelectMD" resultType="OcrDTO">
+		SELECT 
+			MEDICINE_NO 
+		FROM Medicine.MEDINE_TABLE 
+		WHERE USER_ID = #{user_id} AND SAVE_FILE_NAME = #{save_file_name} AND ORG_FILE_NAME = #{org_file_name};
+	</select>
+	
+	<update id="InsertMD" parameterType="OcrDTO">
+		UPDATE Medicine.MEDINE_TABLE 
+			SET 
+		MEDICINE_NAME = #{medicine_name} WHERE (MEDICINE_NO = #{medicine_no});
+	</update>
 	
 	<select id="getOcrList" resultType="OcrDTO">
 		
@@ -40,7 +42,9 @@
 			MEDICINE_NO,
 			SAVE_FILE_NAME,
 			SAVE_FILE_PATH,
-			ORG_FILE_NAME
+			SAVE_FOLDER_NAME,
+			ORG_FILE_NAME,
+			MEDICINE_NAME
 			
 		 FROM Medicine.MEDINE_TABLE;
 		

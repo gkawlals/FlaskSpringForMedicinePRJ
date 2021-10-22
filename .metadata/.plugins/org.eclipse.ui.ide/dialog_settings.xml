@@ -19,4 +19,18 @@
 		<item key="DIALOG_HEIGHT" value="367"/>
 		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
 	</section>
+	<section name="org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog">
+		<item key="ShowStatusLine" value="true"/>
+		<item key="History" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0A;&lt;History&gt;&#x0A;&lt;historyRootNode&gt;&#x0A;&lt;infoNode path=&quot;/SpringPRJ/src/poly/service/impl/MainService.java&quot; type=&quot;1&quot;/&gt;&#x0A;&lt;infoNode path=&quot;/SpringPRJ/src/poly/util/DateUtil.java&quot; type=&quot;1&quot;/&gt;&#x0A;&lt;infoNode path=&quot;/SpringPRJ/src/poly/util/FileUtil.java&quot; type=&quot;1&quot;/&gt;&#x0A;&lt;infoNode path=&quot;/SpringPRJ/src/poly/service/impl/OcrService.java&quot; type=&quot;1&quot;/&gt;&#x0A;&lt;infoNode path=&quot;/SpringPRJ/src/poly/dto/OcrDTO.java&quot; type=&quot;1&quot;/&gt;&#x0A;&lt;infoNode path=&quot;/SpringPRJ/src/poly/controller/UserController.java&quot; type=&quot;1&quot;/&gt;&#x0A;&lt;infoNode path=&quot;/SpringPRJ/src/poly/persistance/sqlmap/mapper/UserMapper.xml&quot; type=&quot;1&quot;/&gt;&#x0A;&lt;infoNode path=&quot;/SpringPRJ/src/poly/dto/UserDTO.java&quot; type=&quot;1&quot;/&gt;&#x0A;&lt;infoNode path=&quot;/SpringPRJ/src/poly/service/impl/UserService.java&quot; type=&quot;1&quot;/&gt;&#x0A;&lt;infoNode path=&quot;/SpringPRJ/WebContent/WEB-INF/view/index.jsp&quot; type=&quot;1&quot;/&gt;&#x0A;&lt;infoNode path=&quot;/SpringPRJ/WebContent/WEB-INF/view/LoginPage.jsp&quot; type=&quot;1&quot;/&gt;&#x0A;&lt;infoNode path=&quot;/SpringPRJ/WebContent/WEB-INF/view/user/InsertPage.jsp&quot; type=&quot;1&quot;/&gt;&#x0A;&lt;infoNode path=&quot;/SpringPRJ/WebContent/WEB-INF/view/ocr/CheckMedicine.jsp&quot; type=&quot;1&quot;/&gt;&#x0A;&lt;infoNode path=&quot;/SpringPRJ/src/poly/controller/OcrController.java&quot; type=&quot;1&quot;/&gt;&#x0A;&lt;infoNode path=&quot;/SpringPRJ/WebContent/WEB-INF/view/ocr/main.jsp&quot; type=&quot;1&quot;/&gt;&#x0A;&lt;infoNode path=&quot;/SpringPRJ/src/poly/persistance/sqlmap/mapper/OcrMapper.xml&quot; type=&quot;1&quot;/&gt;&#x0A;&lt;/historyRootNode&gt;&#x0A;&lt;/History&gt;"/>
+		<item key="ShowDerived" value="false"/>
+		<item key="FilterByLocation" value="false"/>
+		<item key="WorkingSet" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0A;&lt;workingSet workingSetName=&quot;&quot;/&gt;"/>
+		<section name="DialogBoundsSettings">
+			<item key="DIALOG_HEIGHT" value="500"/>
+			<item key="DIALOG_WIDTH" value="600"/>
+			<item key="DIALOG_X_ORIGIN" value="0"/>
+			<item key="DIALOG_Y_ORIGIN" value="374"/>
+			<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
+		</section>
+	</section>
 </section>

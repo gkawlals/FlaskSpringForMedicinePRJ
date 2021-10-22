@@ -37,7 +37,7 @@ public class MainController {
 	
 	@RequestMapping(value="index")
 	public String Index() {
-		log.info(this.getClass());
+		log.info(this.getClass().getName() + "index Page !");
 		
 		return "/index";
 	}

@@ -10,4 +10,6 @@ public interface IUserMapper {
 
 	int InsertStart(UserDTO pDTO);
 
+	int userIdCheck(String user_id);
+
 }

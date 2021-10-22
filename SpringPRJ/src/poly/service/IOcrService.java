@@ -5,14 +5,16 @@ import java.util.List;
 import poly.dto.OcrDTO;
 
 public interface IOcrService {
+		
 	
-	// 이미지 파일로부터 문자 읽어 오기
-		OcrDTO getReadforImageText(OcrDTO pDTO) throws Exception;
-
 		int AddMedicine(OcrDTO pDTO);
 
 		int InsertImage(OcrDTO pDTO);
 
 		List<OcrDTO> getOcrList();
+
+		OcrDTO SelectMD(OcrDTO pDTO);
+
+		int InsertMD(OcrDTO pDTO);
 
 }

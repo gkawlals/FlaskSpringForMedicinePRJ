@@ -29,10 +29,10 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<div class="login100-pic js-tilt" data-tilt>
-					<img src="../resource/images/img-01.png" alt="IMG" onclick="location.href='/index.do'">
+					<img src="../resource/images/img-01.png" alt="IMG" onclick="location.href='/indx.do'">
 				</div>
 
-				<form class="login100-form validate-form" antion="../user/LoginStart.do">
+				<form class="login100-form validate-form" action="/user/LoginStart.do">
 					<span class="login100-form-title">
 						Medicine
 					</span>

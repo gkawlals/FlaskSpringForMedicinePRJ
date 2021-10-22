@@ -22,27 +22,6 @@ public class OcrService implements IOcrService {
 	// 로그 파일 생성 및 로그 출력을 위한 log4j 프레임워크의 자바 객체
 	private Logger log = Logger.getLogger(this.getClass());
 
-	/**
-	 * 이미지 파일로부터 문자 읽어 오기
-	 * 
-	 * @param pDTO 이미지 파일 정보
-	 * @return pDTO 이미지로부터 읽은 문자열
-	 */
-	@Override
-	public OcrDTO getReadforImageText(OcrDTO pDTO) throws Exception {
-
-		log.info(this.getClass().getName() + ".getFoodInfoFromWEB start!");
-
-		File imageFile = new File(CmmUtil.nvl(pDTO.getSave_file_path()) + "//" + CmmUtil.nvl(pDTO.getSave_file_name()));
-
-		//문자열 인식 결과를  DB에 저장
-		ocrMapper.InsertOcrInfo(pDTO);
-		
-		log.info(this.getClass().getName() + ".getFoodInfoFromWEB End!");
-
-		return pDTO;
-	}
-
 	@Override
 	public int AddMedicine(OcrDTO pDTO) {
 		// TODO Auto-generated method stub
@@ -59,6 +38,18 @@ public class OcrService implements IOcrService {
 	public List<OcrDTO> getOcrList() {
 		// TODO Auto-generated method stub
 		return ocrMapper.getOcrList();
+	}
+
+	@Override
+	public OcrDTO SelectMD(OcrDTO pDTO) {
+		// TODO Auto-generated method stub
+		return ocrMapper.SelectMD(pDTO);
+	}
+
+	@Override
+	public int InsertMD(OcrDTO pDTO) {
+		// TODO Auto-generated method stub
+		return ocrMapper.InsertMD(pDTO);
 	}
 
 }
