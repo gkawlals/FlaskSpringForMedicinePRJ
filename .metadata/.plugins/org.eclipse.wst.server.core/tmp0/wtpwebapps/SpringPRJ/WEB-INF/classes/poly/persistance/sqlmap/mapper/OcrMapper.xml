@@ -46,7 +46,7 @@
 			ORG_FILE_NAME,
 			MEDICINE_NAME
 			
-		 FROM Medicine.MEDINE_TABLE;
+		 FROM Medicine.MEDINE_TABLE WHERE MEDICINE_NAME IS NOT NULL;
 		
 	</select>
 	

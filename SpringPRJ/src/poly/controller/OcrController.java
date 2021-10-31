@@ -77,7 +77,7 @@ import poly.util.UrlUtil;
 			
 			try {
 				
-				MD_list = MD_list.replace("& #40;", "(").replace("& #41;", ")").replace(" ", ", ");
+				MD_list = MD_list.replace("& #40;", "(").replace("& #41;", ")").replace(" ", ",");
 				
 				rDTO = new OcrDTO();
 				

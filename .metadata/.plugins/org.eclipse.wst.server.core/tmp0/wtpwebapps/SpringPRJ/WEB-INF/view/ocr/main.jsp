@@ -45,7 +45,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                     	<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" onclick="document.all.fileUpload.click()" >Picture</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact" onclick="/user/logOut.do">Logout</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact" onclick="location.href='/user/logOut.do'">Logout</a></li>
                     </ul>
                     
                     <a data-bs-toggle="modal" data-bs-target="#ModalDiseane" id="MDiseane" style="display:none" ></a>
@@ -257,6 +257,34 @@
                                     <!-- Image_no 기준으로 이미지 경로 불러오기-->
                                     <img class="img-fluid rounded mb-5" src="../resource/ocrImage/upload/<%=Medicine.getSave_folder_name()%>/<%=Medicine.getSave_file_name() %>" alt="..." />
                                     <!-- Portfolio Modal - Text-->
+                                    <script>
+                                    	var Medicine_name = "<%=Medicine.getMedicine_name() %>";
+                                    	var Medicine_list = Medicine_name.replace(",","  ");
+                                    	console.log("Medicine_list : " + Medicine_list);
+                                    	Medicine_list = Medicine_list.split(",");
+                                    	var wordlist = []
+                                    	for ( i = 0; i < Medicine_list.length; i++){
+                                    		console.log("test i  : " + i);
+                                    		wordlist[i] = Medicine_list[i];
+                                    		console.log("wordlist : " + wordlist[i]);
+                                    	}
+                                    	
+                                    	for( j = 0; j < Medicine_list.length; j++){
+                                    		
+                                    		newMD = document.createElement("p");
+                                        	newMD.setAttribute("class", 'masthead-subheading font-weight-light mb-0')
+                    	                  	
+                    	                  	newMD.style.objectFit = "contain";
+                                        	newMD.id = "newMD" + i;
+                    	                  		
+                    	                  	var container = document.getElementById('MDList');
+                    	                  	container.appendChild(newMD);
+                    	                  	console.log("wordlist : " + wordlist[j]);
+                                    	}
+                                    
+                                    </script>
+                                    <div id="MDList">
+                                    </div>
                                     <div>
                                     	<p class="masthead-subheading font-weight-light mb-0"><%=Medicine.getMedicine_name() %></p>
                                     </div>
