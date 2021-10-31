@@ -8755,3 +8755,21 @@
 2021-10-22 13:07:11,985 [Worker-557: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
 2021-10-22 13:07:11,989 [Worker-557: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hamjimin/Desktop/Spring_Settings/Spring_Flask/SpringPRJ/src/test/resources
 2021-10-22 14:51:27,828 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2021-10-27 09:28:26,884 [Worker-5: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2021-10-27 09:28:31,439 [Worker-10: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-10-27 09:28:31,441 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hamjimin/Desktop/Spring_Settings/Spring_Flask/SpringPRJ/src/main/resources
+2021-10-27 09:28:31,443 [Worker-10: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-10-27 09:28:31,444 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hamjimin/Desktop/Spring_Settings/Spring_Flask/SpringPRJ/src/test/resources
+2021-10-27 09:28:33,401 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-10-27 09:28:33,401 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hamjimin/Desktop/Spring_Settings/Spring_Flask/kopo/src/main/resources
+2021-10-27 09:28:33,403 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-10-27 09:28:33,404 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hamjimin/Desktop/Spring_Settings/Spring_Flask/kopo/src/test/resources
+2021-10-31 22:58:01,087 [Worker-5: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2021-10-31 22:58:08,098 [Worker-6: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-10-31 22:58:08,099 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hamjimin/Desktop/Spring_Settings/Spring_Flask/SpringPRJ/src/main/resources
+2021-10-31 22:58:08,101 [Worker-6: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-10-31 22:58:08,102 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hamjimin/Desktop/Spring_Settings/Spring_Flask/SpringPRJ/src/test/resources
+2021-10-31 22:58:19,951 [Worker-10: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-10-31 22:58:19,952 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hamjimin/Desktop/Spring_Settings/Spring_Flask/SpringPRJ/src/main/resources
+2021-10-31 22:58:19,954 [Worker-10: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-10-31 22:58:19,954 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hamjimin/Desktop/Spring_Settings/Spring_Flask/SpringPRJ/src/test/resources

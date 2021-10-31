@@ -165,7 +165,7 @@ import poly.util.UrlUtil;
 			
 			model.addAttribute("ocrList", ocrList);
 			
-			
+			    
 			for(OcrDTO e : ocrList) {
 				log.info(" Medicine_no : " + e.getMedicine_no());
 			}
