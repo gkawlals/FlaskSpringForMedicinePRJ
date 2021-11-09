@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="List"/>
+		<item key="selection" value="id=&quot;modalList"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="id=&quot;modallist"/>
+			<item value="id=&quot;modal"/>
+			<item value="Select_image"/>
+			<item value="src"/>
+			<item value="$(do"/>
+			<item value="$"/>
+			<item value="jquery"/>
+			<item value="jq"/>
+			<item value="MD_list"/>
+			<item value="ocrlist"/>
+			<item value="처방전"/>
+			<item value="logOut"/>
+			<item value="logout"/>
 			<item value="List"/>
 			<item value="get"/>
-			<item value="ocr/main.do"/>
-			<item value="님"/>
-			<item value="ss_user_name"/>
-			<item value=" checkId"/>
-			<item value=".val()"/>
-			<item value="value;"/>
-			<item value="value"/>
-			<item value="login"/>
-			<item value="portfolio-item-caption"/>
-			<item value="portfolio-item-caption d-flex align-items-center"/>
-			<item value="portfolio-item-caption d-flex align-items-center justify-content-center"/>
-			<item value="h-100 w-100"/>
-			<item value="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100"/>
 		</list>
 		<list key="replacehistory">
 			<item value=".value"/>

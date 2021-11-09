@@ -57,7 +57,7 @@
                     	<input type="submit" name="fileInsert" id="fileInsert" style="display:none" />
                     	
                     </form>
-                    <script>
+                    <script type="text/javascript">
                 
 	                    <!--  FileSelect function start  -->
 	                  	function fileSelect(input){
@@ -218,20 +218,18 @@
                     <div class="divider-custom-line"></div>
                 </div>
                 <!-- Portfolio Grid Items-->
-                <%for(OcrDTO Medicine : ocrList ) {%>
-                	<%if(Medicine.getMedicine_name() != null){%>
-	                <div class="row justify-content-center">
-	                    <div class="col-md-6 col-lg-4 mb-5">
-	                    	<div name="medicine_no" style="display:none"> <%=Medicine.getMedicine_no()%> </div>
-	                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal<%=Medicine.getMedicine_no()%>">
-	                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-	                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
-	                            </div>
-	                            <img class="img-fluid" src="../resource/ocrImage/upload/<%=Medicine.getSave_folder_name()%>/<%=Medicine.getSave_file_name() %>" alt="..." />
-	                        </div>
-	                    </div>
-	                </div>
-	                <%} %>
+                <%for(OcrDTO Medicine : ocrList ) {%>	
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-lg-4 mb-5">
+                    	<div name="medicine_no" style="display:none"> <%=Medicine.getMedicine_no()%> </div>
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" id="modalList<%=Medicine.getMedicine_no()%>" onclick="MD_list()" data-bs-target="#portfolioModal<%=Medicine.getMedicine_no()%>">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="../resource/ocrImage/upload/<%=Medicine.getSave_folder_name()%>/<%=Medicine.getSave_file_name() %>" alt="..." />
+                        </div>
+                    </div>
+                </div>
               <%} %>
             </div>                                  
         </section>
@@ -245,7 +243,6 @@
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
-                                    <!-- Portfolio Modal - Title--><!-- 처방받은 날짜를 제목으로 띄우기 -->
                                     <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">처방전 <!-- CRE_DT --></h2>
                                     <!-- Icon Divider-->
                                     <div class="divider-custom">
@@ -257,36 +254,32 @@
                                     <!-- Image_no 기준으로 이미지 경로 불러오기-->
                                     <img class="img-fluid rounded mb-5" src="../resource/ocrImage/upload/<%=Medicine.getSave_folder_name()%>/<%=Medicine.getSave_file_name() %>" alt="..." />
                                     <!-- Portfolio Modal - Text-->
-                                    <script>
-                                    	var Medicine_name = "<%=Medicine.getMedicine_name() %>";
-                                    	var Medicine_list = Medicine_name.replace(",","  ");
-                                    	console.log("Medicine_list : " + Medicine_list);
-                                    	Medicine_list = Medicine_list.split(",");
-                                    	var wordlist = []
-                                    	for ( i = 0; i < Medicine_list.length; i++){
-                                    		console.log("test i  : " + i);
-                                    		wordlist[i] = Medicine_list[i];
-                                    		console.log("wordlist : " + wordlist[i]);
-                                    	}
+                                    <script type="text/javascript">
                                     	
-                                    	for( j = 0; j < Medicine_list.length; j++){
-                                    		
-                                    		newMD = document.createElement("p");
-                                        	newMD.setAttribute("class", 'masthead-subheading font-weight-light mb-0')
-                    	                  	
-                    	                  	newMD.style.objectFit = "contain";
-                                        	newMD.id = "newMD" + i;
-                    	                  		
-                    	                  	var container = document.getElementById('MDList');
-                    	                  	container.appendChild(newMD);
-                    	                  	console.log("wordlist : " + wordlist[j]);
-                                    	}
-                                    
+                                    	
+                                    	$(function() {
+                                    		$('#modalList<%=Medicine.getMedicine_no()%>').on('click', function(){
+                                    			
+	                                    		var Medicine_name = "<%=Medicine.getMedicine_name() %>";
+	                                        	var Medicine_list = Medicine_name.replace(",","  ");
+	                                        	console.log("Medicine_list : " + Medicine_list);
+	                                        	Medicine_list = Medicine_list.split(",");
+	                                        	var wordlist = []
+	                                        	
+	                                    		for ( i = 0; i < Medicine_list.length; i++){
+	                                        		
+	                                        		wordlist[i] = Medicine_list[i];
+	                                        		console.log("wordlist : " + wordlist[i].trim());
+	                                        	
+	                                        	}
+	                                        	 $('p[id=MD_list]').attr('value',wordlist);
+	                                    		
+                                    		});
+                                	    });
+                                    	
                                     </script>
                                     <div id="MDList">
-                                    </div>
-                                    <div>
-                                    	<p class="masthead-subheading font-weight-light mb-0"><%=Medicine.getMedicine_name() %></p>
+                                    	<p class="masthead-subheading font-weight-light mb-0" id="MD_list"><%=Medicine.getMedicine_name() %></p>
                                     </div>
                                     <p class="mb-4"><!-- Medicine_name(약 이름 ) 나열하기 --></p>
                                     <button class="btn btn-primary" href="#!" data-bs-dismiss="modal">
@@ -362,6 +355,8 @@
             </div>
         </div>
         <!-- Bootstrap core JS-->
+        <script src="../resource/js/jquery-3.4.1.min.js"></script>
+        <script src="../resource/js/jquery-3.2.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="../resource/js/scripts.js"></script>
